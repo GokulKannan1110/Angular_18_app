@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
-import { ActivatedRoute, Event, EventType, Router, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Event, EventType, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { RolesComponent } from './components/roles/roles.component';
 import { MasterComponent } from './components/master/master.component';
 import { Observer } from 'rxjs';
@@ -7,7 +7,7 @@ import { Observer } from 'rxjs';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MasterComponent],
+  imports: [RouterOutlet, MasterComponent, RouterLink, RouterLinkActive],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
