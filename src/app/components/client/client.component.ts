@@ -18,12 +18,44 @@ export class ClientComponent {
 
   ngOnInit()
   {
-    this.clientService.GetAllClients().subscribe((result:APIResponseModel) => {
-      this.clientList = result.data;
+    this.loadClients();
+  }
+
+loadClients(){
+  this.clientService.GetAllClients().subscribe((result:APIResponseModel) => {
+    this.clientList = result.data;
+  })
+}
+
+  onSaveClient(){
+    this.clientService.AddUpdate(this.clientObj).subscribe((res:APIResponseModel) => {
+      if(res.result){
+        const action = (this.clientObj.clientId != 0) ? 'Updated' : 'Created'
+         alert('Client '+ action+' Succesfully!');
+        this.loadClients();
+        this.clientObj = new Client();
+      }else{
+        alert(res.message);
+      }
     })
   }
-  onSaveClient(){
 
+  EditClient(client: Client){
+    this.clientObj = client;
   }
 
+  DeleteClient(clientId : number){
+    const isDelete = confirm('Are you sure want to delete?');
+    if(isDelete)
+    {
+      this.clientService.DeleteClientById(clientId).subscribe((res:APIResponseModel) => {
+        if(res.result){
+          alert('Client Deleted Succesfully!');
+          this.loadClients();
+        }else{
+          alert(res.message);
+        }
+      })
+    }
+  }
 }
