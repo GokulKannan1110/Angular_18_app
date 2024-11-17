@@ -3,11 +3,13 @@ import { Client } from '../../model/class/Client';
 import { FormsModule } from '@angular/forms';
 import { ClientService } from '../../services/client.service';
 import { APIResponseModel } from '../../model/interface/role';
+import { AsyncPipe, DatePipe, JsonPipe, UpperCasePipe } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, UpperCasePipe, DatePipe, JsonPipe, AsyncPipe],
   templateUrl: './client.component.html',
   styleUrl: './client.component.css'
 })
@@ -15,10 +17,13 @@ export class ClientComponent {
   clientObj: Client = new Client();
   clientList: Client[] = [];
   clientService: ClientService = inject(ClientService);
+  currentDate: Date = new Date();
+  userList$: Observable<any> = new Observable<any>;
 
   ngOnInit()
   {
     this.loadClients();
+    this.userList$ = this.clientService.getAllMockUsers();
   }
 
 loadClients(){

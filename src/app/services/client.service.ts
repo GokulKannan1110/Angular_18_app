@@ -26,4 +26,13 @@ export class ClientService {
   {
     return this.http.delete<APIResponseModel>(environment.API_URL + "DeleteClientByClientId?clientId="+id );
   }
+
+  addClientProjectUpdate(obj:Client):Observable<APIResponseModel>
+  {
+    return this.http.post<APIResponseModel>(environment.API_URL + "AddUpdateClientProject", obj);
+  }
+
+  getAllMockUsers(){
+    return this.http.get("https://jsonplaceholder.typicode.com/users");
+  }
 }
