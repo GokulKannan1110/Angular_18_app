@@ -1,0 +1,25 @@
+::ng-deep #datePickComponent .mat-form-field-infix {
+  padding: 0 !important;
+  border: none !important;
+  width: 150px !important;
+}
+
+::ng-deep #datePickComponent .mat-form-field-flex {
+  padding: 0 5px !important;
+  border-radius: 5px !important;
+}
+
+::ng-deep #datePickComponent .mat-form-field-underline {
+  display: none;
+}
+
+
+input {
+  max-width: 80px !important;
+  font-size: 15px !important;
+  padding: 0 !important;
+}
+
+.invalid-feedback {
+  margin-top: 0 !important;
+}

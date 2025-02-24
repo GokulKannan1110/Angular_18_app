@@ -1,0 +1,14 @@
+<mat-form-field id="datePickComponent" appearance="fill" class="padding-0-10">
+    <div class="row padding-left-20 confirm-align">
+        <input matInput [matDatepicker]="picker" (dateInput)="addEvent()" [class.is-invalid]="!isValidDateRange"
+            [formControl]="date" [max]="today" class="padding-0">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <!-- <div class="today-img padding-10-15" matTooltip="{{'local.TodayLabel' | translate}}" (click)="setToday()"></div> -->
+        <!-- <button mat-icon-button (click)="setToday()"><mat-icon fontIcon="access_time"></mat-icon></button> -->
+        <mat-datepicker #picker>
+        </mat-datepicker>
+        <div *ngIf="!isValidDateRange" class="invalid-feedback">
+            Date is invalid
+        </div>
+    </div>
+</mat-form-field>

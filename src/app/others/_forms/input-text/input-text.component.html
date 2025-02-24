@@ -1,0 +1,42 @@
+<div>
+  <mat-form-field class="mat-form-field-80">
+    <input *ngIf="!isInputForCurrency" matInput type="{{ type }}"
+      [class.is-invalid]="control.touched && control.invalid" class="pull-left padding-b3" [formControl]="control"
+      placeholder="{{ label | translate }}" appUpdateRequiredValidator [enableValidator]="false" [value]="value"
+      [attr.maxlength]="maxLength" (blur)="onBlur($event)" />
+    <div class="container-horizontal" *ngIf="isInputForCurrency">
+      <div class="element1 top-space-3" *ngIf="(loanAmountRef.value && locale==='en-CA')"><label class="label"
+          *ngIf="isInputForCurrency">$</label></div>
+
+      <div class="element2 top-space-5">
+        <input matInput type="{{ type }}" [class.is-invalid]="control.touched && control.invalid"
+          class="pull-left padding-b3" [formControl]="control" placeholder="{{ label | translate }}"
+          appUpdateRequiredValidator [enableValidator]="false" [isInputForCurrency]="isInputForCurrency" [value]="value" [attr.maxlength]="maxLength"
+          (blur)="onBlur($event)" appCurrencyFormat [locale]="this.locale" [focusValue]="focusValue" #loanAmountRef />
+      </div>
+      <div class="element1 top-space-3" *ngIf="loanAmountRef.value && locale==='fr-CA'"><label class="label"
+          *ngIf="isInputForCurrency">$</label></div>
+    </div>
+
+    <mat-error *ngIf="control.errors?.['required']">
+      {{ 'createOrder.OrderValidationMsg' | translate }}
+    </mat-error>
+    <mat-error *ngIf="control.errors?.['minlength'] ">
+      {{ label | translate }} must be at least
+      {{control.errors?.['minlength'].requiredLength}} characters
+    </mat-error>
+    <mat-error *ngIf="control.errors?.['maxlength']">
+      {{ label | translate }} must be at most
+      {{control.errors?.['maxlength'].requiredLength}} characters
+    </mat-error>
+    <mat-error *ngIf="control.errors?.['notMatching']">
+      Passwords do not match
+    </mat-error>
+    <mat-error *ngIf="haspatterError()">
+      invalid {{ label | translate }}
+    </mat-error>
+    <mat-error *ngIf="control.errors?.['maxValueExceeded']">
+      {{'local.MaxValueExceeded' | translate}}
+    </mat-error>
+  </mat-form-field>
+</div>

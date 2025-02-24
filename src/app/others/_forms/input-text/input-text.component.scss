@@ -1,0 +1,25 @@
+.pull-left {
+  float: left !important;
+}
+.padding-b3 {
+  padding-bottom: 3px;
+}
+
+// .mat-form-field {
+//   // width: 80% !important;
+//   //padding-top: 5px !important;
+// }
+
+.container-horizontal {
+  display: flex;
+}
+
+.element1 {
+  flex: 0.25; /* Takes up 10% of the width */
+  //background-color: lightblue;
+}
+
+.element2 {
+  flex: 9; /* Takes up remaining 90% of the width */
+  //background-color: lightgreen;
+}
